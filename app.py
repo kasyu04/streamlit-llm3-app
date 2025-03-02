@@ -1,12 +1,18 @@
 from dotenv import load_dotenv
-
 load_dotenv()
 
-from langchain_openai import ChatOpenAI
-from langchain.schema import SystemMessage, HumanMessage, AIMessage
 import streamlit as st
+import openai
 
-llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
+# secrets.tomlファイルからAPIキーを取得
+openai.api_key = st.secrets["OPENAI"]["OPENAI_API_KEY"]
+
+from langchain_openai import ChatOpenAI
+from langchain.schema import HumanMessage, AIMessage , SystemMessage
+
+llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0, api_key=openai.api_key)
+
+llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0, api_key=openai.api_key)
 
 st.title("あなたはどんな人ですか")
 
